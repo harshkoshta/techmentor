@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>Course Detail</title>
+<link rel="icon" href="https://images.unsplash.com/photo-1587131766835-e5dfaf70ea20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+<link rel="stylesheet" th:href="@{/assets/css/styles.min.css}">
+</head>
+
+<body>
+
+	<div sec:authorize="isAnonymous()">
+		<div th:replace="fragment/navbar :: navbarforall"></div>
+	</div>
+	<div sec:authorize="isAuthenticated()">
+		<div th:replace="fragment/navbar :: navbarforuser(${session.user})"></div>
+	</div>
+	<div>
+		<div class="container" th:object="${course}">
+			<h1 class="my-4" th:text="${course.name}">
+				Page Heading<br />
+			</h1>
+			<div class="row">
+				<div class="col-md-8">
+					<img class="img-fluid" th:src="${course.image}" alt="Alt Text" />
+					<h3 class="my-3">Course Description</h3>
+					<p th:utext="${course.description}">Lorem ipsum dolor sit amet,
+						consectetur adipiscing elit. Nam viverra euismod odio, gravida
+						pellentesque urna varius vitae. Sed dui lorem, adipiscing in
+						adipiscing et, interdum nec metus. Mauris ultricies, justo eu
+						convallis placerat, felis enim.</p>
+				</div>
+				<div class="col-md-4">
+
+
+					<h3 class="my-3">Project Details</h3>
+					<ul class="list-unstyled">
+						<li>Certificate provided </li>
+						<li>Covered by industral expert</li>
+						<li>Dolor Sit Amet</li>
+						<li>Adipiscing Elit</li>
+					</ul>
+					<div sec:authorize="isAnonymous()">
+						<a type="button" th:href="@{/login}"
+							class="btn btn-warning btn-lg btn-block">Login and Enroll
+							Myself</a>
+					</div>
+					<div sec:authorize="isAuthenticated()">
+						<form method="post" th:action="@{'/pay/'+${course.fees}}">
+							<input type="hidden" th:value="${course.id}" name="courseid">
+							<button type="submit" class="btn btn-warning btn-lg btn-block"
+								th:text="'Pay ' +${course.fees} +' &#8377; and Enroll '">Pay
+								and Enroll</Button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragment/footer :: footerforall"></div>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+	<script th:src="@{/assets/js/script.min.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>Course</title>
+<link rel="icon" href="https://images.unsplash.com/photo-1587131766835-e5dfaf70ea20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+<link rel="stylesheet" th:href="@{/assets/css/styles.min.css}">
+</head>
+
+<body>
+
+	<div sec:authorize="isAnonymous()">
+		<div th:replace="fragment/navbar :: navbarforall"></div>
+	</div>
+	<div sec:authorize="isAuthenticated()">
+		<div th:replace="fragment/navbar :: navbarforuser(${session.user})"></div>
+	</div>
+	<div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<section>
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-4" th:each="course : ${courses}">
+									<div class="card mb-4 box-shadow">
+										<img class="card-img-top w-100 d-block"
+											th:src="${course.image}">
+										<div class="card-body">
+											<h4 class="card-title" th:text="${course.name}">Title</h4>
+											<h6 class="text-muted card-subtitle mb-2"
+												th:text="'Price : ' + ${course.fees}">Subtitle</h6>
+											<p class="card-text" th:text="${course.shortdescription}">Nullam
+												id dolor id nibh ultricies vehicula ut id elit. Cras justo
+												odio, dapibus ac facilisis in, egestas eget quam. Donec id
+												elit non mi porta gravida at eget metus.</p>
+											<div class="btn-group-vertical border rounded-0" role="group">
+												<a class="btn btn-primary text-justify" type="button" 
+												th:href = "@{'/coursedetail/' + ${course.id}}">View
+													More</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragment/footer :: footerforall"></div>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+	<script th:src="@{/assets/js/script.min.js}"></script>
+</body>
+
+</html>

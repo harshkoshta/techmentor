@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>home</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+<link rel="stylesheet" th:href="@{./assets/css/styles.min.css}">
+</head>
+<body>
+
+
+	<div th:fragment="navbarforall">
+		<nav class="navbar navbar-light navbar-expand-md navigation-clean">
+			<div class="container">
+				<img
+					src="https://images.unsplash.com/photo-1587131766835-e5dfaf70ea20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80"
+					style="background-size: auto; width: 30px;"><a
+					class="navbar-brand" th:href="@{/}">TechMentor</a>
+				<button data-toggle="collapse" class="navbar-toggler"
+					data-target="#navcol-1">
+					<span class="sr-only">Toggle navigation</span><span
+						class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navcol-1">
+					<ul class="nav navbar-nav ml-auto">
+						<li class="nav-item" role="presentation"></li>
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							th:href="@{/certificate}">Certification</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							th:href="@{/course}">Course</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							th:href="@{/login}">Login/Register</a></li>
+
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div th:fragment="navbarforuser(user)">
+		<nav class="navbar navbar-light navbar-expand-md navigation-clean">
+			<div class="container">
+				<img
+					src="https://images.unsplash.com/photo-1587131766835-e5dfaf70ea20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80"
+					style="background-size: auto; width: 30px;"><a
+					class="navbar-brand" th:href="@{/}">TechMentor</a>
+				<button data-toggle="collapse" class="navbar-toggler"
+					data-target="#navcol-1">
+					<span class="sr-only">Toggle navigation</span><span
+						class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navcol-1">
+					<ul class="nav navbar-nav ml-auto">
+						<li class="nav-item" role="presentation"><a
+							sec:authorize="hasAnyAuthority('ADMIN','MANAGER')" class="nav-link"
+							th:href="@{/authorize}">Authority Tab here</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							th:href="@{/certificate}">Certification</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							th:href="@{/course}">Course</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							th:text="${user.name}" href="#">Welcome User</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							th:href="@{/logout}">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>home</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" th:href="@{/assets/css/styles.min.css}">
+</head>
+
+<body>
+
+<div sec:authorize="isAnonymous()">
+    <div th:replace="fragment/navbar :: navbarforall"></div>
+</div>
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragment/navbar :: navbarforuser(${session.user})"></div>
+</div>
+
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img
+                        src="https://image.freepik.com/free-vector/404-error-web-page-warning-website-concept_133260-927.jpg"
+                        style="width: 264px; height: 262px; margin: 25px;"/>
+            </div>
+            <div class="col-md-6">
+                <h1>Opps!!</h1>
+                <h1 class="h3"><span th:text="${status}"></span> - <span th:text="${error}"></span></h1>
+                <h1 class="h5">Error Description</h1>
+                <div class="container">
+
+                    <!--    <div class="row rowDesign">
+                         <div class="col-md-4 ml-auto">
+                           <span class="legend">Date</span>
+                         </div>
+                         <div class="col-md-8">
+                           <span th:text="${timestamp}"></span>
+                         </div> -->
+                </div>
+                <div class="row rowDesign">
+                    <div class="col-md-4 ml-auto">
+                        <span class="legend">Path</span>
+                    </div>
+                    <div class="col-md-8">
+                        <span th:text="${path}"></span>
+                    </div>
+                </div>
+                <div class="row rowDesign">
+                    <div class="col-md-4 ml-auto">
+                        <span class="legend">Error</span>
+                    </div>
+                    <div class="col-md-8">
+                        <span th:text="${error}"></span>
+                    </div>
+                </div>
+                <div class="row rowDesign">
+                    <div class="col-md-4 ml-auto">
+                        <span class="legend">Status</span>
+                    </div>
+                    <div class="col-md-8">
+                        <span th:text="${status}"></span>
+                    </div>
+                </div>
+                <div class="row rowDesign">
+                    <div class="col-md-4 ml-auto">
+                        <span class="legend">Message</span>
+                    </div>
+                    <div class="col-md-8">
+                        <span th:text="${message}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+
+<div th:replace="fragment/footer :: footerforall"></div>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+<script th:src="@{/assets/js/script.min.js}"></script>
+</body>
+
+</html>
